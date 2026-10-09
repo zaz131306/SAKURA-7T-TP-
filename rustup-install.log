@@ -1,0 +1,46 @@
+error: $HOME differs from euid-obtained home directory: you may be using sudo
+error: $HOME directory: /tmp
+error: euid-obtained home directory: /root
+info: profile set to minimal
+info: default host tuple is x86_64-unknown-linux-gnu
+info: syncing channel updates for 1.83.0-x86_64-unknown-linux-gnu
+info: latest update on 2024-11-28 for version 1.83.0 (90b35a623 2024-11-26)
+info: downloading 6 components
+info: default toolchain set to 1.83.0-x86_64-unknown-linux-gnu
+
+  1.83.0-x86_64-unknown-linux-gnu installed - rustc 1.83.0 (90b35a623 2024-11-26)
+
+
+Rust is installed now. Great!
+
+To get started you may need to restart your current shell.
+This would reload your PATH environment variable to include
+Cargo's bin directory ($HOME/.cargo/bin).
+
+To configure your current shell, you need to source the
+corresponding env file under $HOME/.cargo.
+
+Consider running the right command for your shell (note the leading DOT):
+. "$HOME/.cargo/env" # For sh/ash/dash/pdksh
+cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-gnu
+CC_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CC_x86_64_unknown_linux_gnu
+CC_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CC
+HOST_CC = None
+cargo:rerun-if-env-changed=CC
+CC = None
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+cargo:warning=Compiler family detection failed due to error: ToolNotFound: failed to find tool "cc": No such file or directory (os error 2)
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_gnu
+CFLAGS_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-gnu
+CFLAGS_x86_64-unknown-linux-gnu = None
+warn: no default linker (`cc`) was found in your PATH
+warn: many Rust crates require a system C toolchain to build

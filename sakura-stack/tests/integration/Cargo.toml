@@ -1,0 +1,24 @@
+[package]
+name = "sakura-integration"
+description = "SAKURA STACK: интеграционные испытания — кластер в процессе (NPP-кадры + SakuraBFT + CRDT + аудит), сценарии §15.4"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-hybrid = { workspace = true }
+sakura-hsm = { workspace = true }
+sakura-boot = { workspace = true }
+sakura-attestation = { workspace = true }
+sakura-update = { workspace = true }
+sakura-npp = { workspace = true }
+sakura-consensus = { workspace = true }
+sakura-crdt = { workspace = true }
+sakura-policy = { workspace = true }
+sakura-audit = { workspace = true }
+
+[lints]
+workspace = true

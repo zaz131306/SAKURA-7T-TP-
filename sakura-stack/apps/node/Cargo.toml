@@ -1,0 +1,32 @@
+[package]
+name = "sakura-node"
+description = "SAKURA STACK: демон узла платформы — boot-цепочка L0, HSM, NPP-кластер, SakuraBFT-консенсус, CRDT-репликация, control API (API-1), аудит, OTA"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "sakura_node"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sakura-node"
+path = "src/main.rs"
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-pq = { workspace = true }
+sakura-hybrid = { workspace = true }
+sakura-hsm = { workspace = true }
+sakura-boot = { workspace = true }
+sakura-attestation = { workspace = true }
+sakura-update = { workspace = true }
+sakura-npp = { workspace = true }
+sakura-consensus = { workspace = true }
+sakura-crdt = { workspace = true }
+sakura-policy = { workspace = true }
+sakura-audit = { workspace = true }
+
+[lints]
+workspace = true

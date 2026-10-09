@@ -1,0 +1,10 @@
+target/
+Cargo.lock.bak
+*.swp
+.DS_Store
+node_modules/
+__pycache__/
+*.log
+run-data/
+hw/sim/*.vvp
+hw/sim/*.out

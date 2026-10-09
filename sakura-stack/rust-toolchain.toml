@@ -1,0 +1,5 @@
+# 21.2.1 (BC-9): pinned validated toolchain, edition 2021
+[toolchain]
+channel = "1.83.0"
+components = ["rustfmt", "clippy", "rust-src"]
+profile = "minimal"

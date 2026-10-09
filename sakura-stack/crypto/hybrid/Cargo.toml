@@ -1,0 +1,18 @@
+[package]
+name = "sakura-hybrid"
+description = "SAKURA STACK КР-1: гибридная криптография — подпись ГОСТ+ML-DSA-65 (§23.3.3), KEM-combiner (§23.3.2), Кузнечик-MGM AEAD (BC-21)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-pq = { workspace = true }
+mgm = { workspace = true }
+kuznyechik = { workspace = true }
+aead = { workspace = true }
+zeroize = { workspace = true }
+
+[lints]
+workspace = true

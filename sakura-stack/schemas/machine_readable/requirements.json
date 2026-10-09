@@ -1,0 +1,229 @@
+{
+  "tz_version": "2.3",
+  "cipher": "SAKURA-7T-TP",
+  "date": "2026-10-07",
+  "product": "Sakura Stack",
+  "note": "Фрагмент МР-1 (§26.6): требования, верифицированные данной реализацией ПО. Формат — по схеме JSON §26.6.",
+  "requirements": [
+    {
+      "id": "CONS-001",
+      "category": "consensus",
+      "priority": "MUST",
+      "verification": "T/F",
+      "name": "BFT (SakuraBFT)",
+      "must": {"value": "f=3, N=10 (3f+1)", "note": "реализация параметрическая: n=3f+1; demo-кластер n=4/f=1"},
+      "evidence": "sw/consensus, tests/integration/tests/cluster_in_process.rs"
+    },
+    {
+      "id": "CONS-002",
+      "category": "consensus",
+      "priority": "MUST",
+      "verification": "F",
+      "name": "Кворум 2f+1",
+      "must": {"value": "2f+1"},
+      "evidence": "sw/consensus/src/node.rs::quorum; тест quorum_and_leader"
+    },
+    {
+      "id": "CONS-005",
+      "category": "consensus",
+      "priority": "MUST",
+      "verification": "I",
+      "name": "Round cleanup MAX_ROUNDS_TO_KEEP",
+      "must": {"value": 100},
+      "evidence": "sw/consensus/src/engine.rs::MAX_ROUNDS_TO_KEEP"
+    },
+    {
+      "id": "CONS-006",
+      "category": "consensus",
+      "priority": "MUST",
+      "verification": "F",
+      "name": "Double finalization = 0",
+      "must": {"value": 0},
+      "evidence": "node.rs::finalize/import_finalized; тесты double_finalization_impossible, no_double_finalization_cluster_wide"
+    },
+    {
+      "id": "CONS-FSM-001",
+      "category": "consensus",
+      "priority": "MUST",
+      "verification": "I/F",
+      "name": "Consensus FSM в BFT-терминах (BC-23)",
+      "must": {"value": "BACKUP, PREPARE, COMMIT, FINALIZED, VIEW_CHANGE, NEW_VIEW, DEGRADED, ISOLATED, SYNC/RECOVERY, QUARANTINE, EVIDENCE_LOG"},
+      "evidence": "sw/consensus/src/engine.rs::FsmState; engine_cluster.rs"
+    },
+    {
+      "id": "AUD-003",
+      "category": "audit",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "Hash chain: prev_hash + record_mac + seq + key_epoch",
+      "must": {"value": "формулы §4.12"},
+      "evidence": "sw/audit_service (chain_link, mac_base); тесты tamper_detection_all_classes"
+    },
+    {
+      "id": "AUD-004",
+      "category": "audit",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "Checkpoint каждые 512 записей",
+      "must": {"value": 512},
+      "target": {"value": 256},
+      "evidence": "CHECKPOINT_INTERVAL; тест checkpoints_every_512"
+    },
+    {
+      "id": "AUD-006",
+      "category": "audit",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "Ротация HMAC-ключа ≤24 ч или 10^6 записей",
+      "must": {"value": "24h/1e6"},
+      "evidence": "key_rotation_epochs"
+    },
+    {
+      "id": "AUD-008",
+      "category": "audit",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "Tamper detection: insert/delete/modify/reorder/replay",
+      "must": {"value": "5 классов"},
+      "evidence": "tamper_detection_all_classes"
+    },
+    {
+      "id": "IDEMP-001",
+      "category": "api",
+      "priority": "MUST",
+      "verification": "T/F",
+      "name": "Идемпотентность (BC-27): key привязан к actor/session/type/payload/window; store защищён от rollback",
+      "must": {"value": "см. §13.20.1"},
+      "evidence": "apps/node/src/control.rs; тесты idem_key_binding, command_result_reuse, persistence_and_rollback_guard; E2E IDEMPOTENT_REPLAY"
+    },
+    {
+      "id": "REPLAY-001",
+      "category": "api",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "Replay protection: nonce + seq + timestamp window + channel binding",
+      "must": {"value": "см. §13.20.2"},
+      "evidence": "control.rs (check_principal_seq, consume_nonce), sw/npp replay.rs, net.rs channel binding"
+    },
+    {
+      "id": "UPDATE-ROLLBACK-001",
+      "category": "lifecycle",
+      "priority": "MUST",
+      "verification": "T/F",
+      "name": "BC-24: pending counter отдельно; commit только после successful boot+self-test; при неудаче active не изменяется",
+      "must": {"value": "см. §13.16.2"},
+      "evidence": "sakura-boot/rollback.rs, sakura-update, apps/node run_boot (A/B fallback); тесты bc24_commit_semantics, success_path_commits_counter, failed_boot_does_not_commit; E2E ota"
+    },
+    {
+      "id": "HSM-API-001",
+      "category": "crypto",
+      "priority": "MUST",
+      "verification": "T/D/F",
+      "name": "BC-18: slice-based API, буферы вызывающей стороны, BufferTooSmall, no HsmError::Ok",
+      "must": {"value": "см. §22.5.1"},
+      "evidence": "firmware/hsm_agent; тест sign_verify_flow_and_buffer_too_small"
+    },
+    {
+      "id": "ATT-001",
+      "category": "crypto",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "BC-19: CBOR/COSE_Sign1, var-length подпись (96 Б запрещены), verifier: alg/chain/nonce/PCR/policy/expiry/revocation",
+      "must": {"value": "см. §13.7"},
+      "evidence": "sakura-attestation; тесты attestation_full_cycle, verifier_rejects_tampering, buffer_too_small_bc18"
+    },
+    {
+      "id": "CRY-006",
+      "category": "crypto",
+      "priority": "MUST",
+      "verification": "KAT",
+      "name": "BC-21: MGM тег 128 бит, IV 128 бит baseline, AAD обязателен, no IV reuse",
+      "must": {"value": "см. §23.2.2"},
+      "evidence": "crypto/hybrid/aead_mgm.rs; тесты mgm_*; IV=dir‖seq в net.rs"
+    },
+    {
+      "id": "CRY-008",
+      "category": "crypto",
+      "priority": "MUST",
+      "verification": "I/D",
+      "name": "BC-16: HSM КС3 (production), FIPS 140-3 reference; SIL — SoftHsm-эмуляция с документированным risk acceptance",
+      "must": {"value": "КС3"},
+      "evidence": "firmware/hsm_agent/src/soft.rs (класс 'KS3-emulation/SIL' в attestation)"
+    },
+    {
+      "id": "NPP-FEC-001",
+      "category": "network",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "BC-26: padding pattern, padding в CRC32, FEC после padding, валидация длины/padding/CRC/FEC до control plane",
+      "must": {"value": "см. §13.3"},
+      "evidence": "sw/npp/frame.rs, rs.rs; тесты frame_*, rs::*, fec_corrects_*, fec_uncorrectable_control_is_critical"
+    },
+    {
+      "id": "CRDT-REG-001",
+      "category": "data",
+      "priority": "MUST",
+      "verification": "T/F",
+      "name": "BC-34: детерминированное разрешение concurrent updates (timestamp, node_id, value_hash), аудит merge без чувствительных данных",
+      "must": {"value": "см. §27.9"},
+      "evidence": "sw/crdt; тесты concurrent_sets_converge_deterministically, permutation_convergence_property"
+    },
+    {
+      "id": "LIFE-001",
+      "category": "lifecycle",
+      "priority": "MUST",
+      "verification": "I/D",
+      "name": "Lifecycle phases: PROVISIONING, OPERATIONAL, DEGRADED, ISOLATED, RECOVERY, DECOMMISSION",
+      "must": {"value": "6 фаз"},
+      "evidence": "sakura-policy LifecyclePhase; узел: фаза из OperatingMode"
+    },
+    {
+      "id": "LIFE-005",
+      "category": "lifecycle",
+      "priority": "MUST",
+      "verification": "T/I",
+      "name": "Authorized decommission: 3 из 5 custodians + подписи",
+      "must": {"value": "3-of-5"},
+      "evidence": "sakura-policy verify_decommission_quorum; тест decommission_3_of_5"
+    },
+    {
+      "id": "ETH-005",
+      "category": "ethics",
+      "priority": "MUST",
+      "verification": "I",
+      "name": "Автономные летальные действия запрещены (hard constraint, не переопределяется)",
+      "must": {"value": "запрет"},
+      "evidence": "sakura-policy HARD_FORBIDDEN_PREFIXES; тест hard_constraints_never_overridable; E2E LETHAL_STRIKE → ETHICS_REJECTED"
+    },
+    {
+      "id": "WCET-001",
+      "category": "realtime",
+      "priority": "MUST",
+      "verification": "T/A/S/F",
+      "name": "BC-31: WCET + interrupt latency + jitter ≤ deadline с запасом ≥20%",
+      "must": {"value": "≥20%", "note": "SIL: window watchdog 50–200 мс (§22.11), HIL — по программе §15.2"},
+      "evidence": "apps/node watchdog.rs; hw/rtl window_wdt + tb"
+    },
+    {
+      "id": "POWER-SEQ-001",
+      "category": "hardware",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "BC-25: power sequencing (HW-контур)",
+      "must": {"value": "§7.3/§13.9", "note": "вне SIL-контура; в ПО — порядок graceful shutdown §22.8"},
+      "evidence": "apps/node shutdown(); hw — ПО-1"
+    },
+    {
+      "id": "L1-PERF-001",
+      "category": "performance",
+      "priority": "MUST",
+      "verification": "T",
+      "name": "AI-инференс на узел, INT8",
+      "must": {"value": null, "unit": "TOPS", "note": "[TBD] по datasheet — HW-контур, вне SIL"},
+      "target": {"value": 250, "unit": "TOPS"},
+      "stretch": {"value": 500, "unit": "TOPS"},
+      "owner": "HW Lead",
+      "evidence": "hw (ПО-1)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[package]
+name = "sakura-update"
+description = "SAKURA STACK: update agent (C-04, BC-24): OTA-манифесты, A/B slots, pending rollback counter, commit только после successful boot"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-hybrid = { workspace = true }
+sakura-hsm = { workspace = true }
+sakura-boot = { workspace = true }
+
+[lints]
+workspace = true

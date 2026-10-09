@@ -1,0 +1,23 @@
+[package]
+name = "sakura-ca"
+description = "SAKURA STACK: CA/ceremony tool — root/platform/firmware/update keys, device/operator certificates (§22.18, §23.4, §23.9), подписание образов и OTA-пакетов"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sakura-ca"
+path = "src/main.rs"
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-pq = { workspace = true }
+sakura-hybrid = { workspace = true }
+sakura-hsm = { workspace = true }
+sakura-boot = { workspace = true }
+sakura-update = { workspace = true }
+sakura-policy = { workspace = true }
+
+[lints]
+workspace = true

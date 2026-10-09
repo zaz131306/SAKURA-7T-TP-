@@ -1,0 +1,15 @@
+[package]
+name = "sakura-pq"
+description = "SAKURA STACK КР-1: постквантовые алгоритмы — ML-DSA-65 (FIPS 204), ML-KEM-1024 (FIPS 203), байт-ориентированные обёртки для HSM"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+fips204 = { workspace = true }
+ml-kem = { workspace = true }
+rand_core = { workspace = true }
+sakura-common = { workspace = true }
+
+[lints]
+workspace = true

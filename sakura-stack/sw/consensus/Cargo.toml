@@ -1,0 +1,13 @@
+[package]
+name = "sakura-consensus"
+description = "SAKURA STACK L6: BFT/CFT консенсус (C-01), Consensus FSM в BFT-терминах (BC-23), equivocation quarantine + evidence log"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+
+[lints]
+workspace = true

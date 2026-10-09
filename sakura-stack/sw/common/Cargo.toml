@@ -1,0 +1,14 @@
+[package]
+name = "sakura-common"
+description = "SAKURA STACK: общие примитивы — canonical CBOR (RFC 8949 §4.2.1, DM-1), коды ошибок ICD-1 §13.8, UUIDv7, hex, конфигурация"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+getrandom = { workspace = true }
+
+[dev-dependencies]
+
+[lints]
+workspace = true

@@ -1,0 +1,83 @@
+# SAKURA STACK — workspace root (CM-1 §21.2 monorepo structure)
+# Шифр ТП: SAKURA-7T-TP, ред. 2.3
+[workspace]
+resolver = "2"
+members = [
+    "sw/common",
+    "crypto/gost",
+    "crypto/pq",
+    "crypto/hybrid",
+    "firmware/hsm_agent",
+    "firmware/boot",
+    "firmware/attestation_agent",
+    "firmware/update_agent",
+    "sw/consensus",
+    "sw/crdt",
+    "sw/npp",
+    "sw/policy_engine",
+    "sw/audit_service",
+    "apps/node",
+    "apps/ca",
+    "apps/cli",
+    "tests/integration",
+]
+
+[workspace.package]
+version = "2.3.0"
+edition = "2021"
+license = "Proprietary"
+repository = "internal://sakura-stack"
+authors = ["Исполнитель-1 (системная интеграция)"]
+
+[workspace.dependencies]
+# Внутренние crates
+sakura-common      = { path = "sw/common" }
+sakura-gost        = { path = "crypto/gost" }
+sakura-pq          = { path = "crypto/pq" }
+sakura-hybrid      = { path = "crypto/hybrid" }
+sakura-hsm         = { path = "firmware/hsm_agent" }
+sakura-boot        = { path = "firmware/boot" }
+sakura-attestation = { path = "firmware/attestation_agent" }
+sakura-update      = { path = "firmware/update_agent" }
+sakura-npp         = { path = "sw/npp" }
+sakura-consensus   = { path = "sw/consensus" }
+sakura-crdt        = { path = "sw/crdt" }
+sakura-policy      = { path = "sw/policy_engine" }
+sakura-audit       = { path = "sw/audit_service" }
+sakura-lifecycle   = { path = "sw/lifecycle_service" }
+
+# Внешние зависимости (Apache-2.0/MIT/BSD — по 21.8 §5)
+# Версии зафиксированы по rust-version ≤ 1.83.0 (BC-9: pinned toolchain 1.83.0;
+# поколение digest 0.10 / cipher 0.3 — совместимо, поколение v11 требует ≥1.85).
+streebog   = "0.10.2"
+digest     = "0.10.7"
+hmac       = "0.12.1"
+zeroize    = "=1.8.2"
+fips204    = "0.4.6"
+ml-kem     = "0.2.3"
+mgm        = "0.4.6"
+kuznyechik = "0.7.2"
+magma      = "0.7"
+cipher     = "0.3"
+aead       = "0.4"
+rand_core  = { version = "0.6.4", features = ["getrandom"] }
+getrandom  = "0.2"
+
+[workspace.lints.clippy]
+# Инженерные допущения платформы (регистрированы в docs/TRACEABILITY.md):
+# - табличные крипто-циклы индексами (читаемо для KAT-сверок);
+# - сложные типы wire-структур и функции с 8+ параметрами — по ICD-профилям.
+needless_range_loop = "allow"
+type_complexity = "allow"
+too_many_arguments = "allow"
+result_unit_err = "allow"
+ptr_arg = "allow"
+
+[profile.release]
+opt-level = 2
+lto = "thin"
+panic = "unwind"
+strip = "symbols"
+
+[profile.dev]
+opt-level = 1

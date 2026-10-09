@@ -1,0 +1,18 @@
+[package]
+name = "sakura-gost"
+description = "SAKURA STACK КР-1: ГОСТ Р 34.10-2012 (paramSetA), Стрибог-256/512, HMAC/HKDF/KDF (RFC 7836), ГОСТ 28147-89 (param-Z): ECB/IMIT/key wrap"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+streebog = { workspace = true }
+digest = { workspace = true }
+hmac = { workspace = true }
+zeroize = { workspace = true }
+sakura-common = { workspace = true }
+
+[dev-dependencies]
+
+[lints]
+workspace = true

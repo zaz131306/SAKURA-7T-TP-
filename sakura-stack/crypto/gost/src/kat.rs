@@ -1,0 +1,64 @@
+//! KAT: GOST R 34.10-2012 (paramSetA) + Стрибог — сгенерированы
+//! независимой реализацией gostcrypto (Python) и параметрами RFC 7836/ГОСТ.
+//! Файл автогенерируется tools/codegen/gen_kats.py — не редактировать вручную.
+
+pub const CURVE_P: &str = "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd97";
+pub const CURVE_A: &str = "c2173f1513981673af4892c23035a27ce25e2013bf95aa33b22c656f277e7335";
+pub const CURVE_B: &str = "295f9bae7428ed9ccc20e7c359a9d41a22fccd9108e17bf7ba9337a6f8ae9513";
+pub const CURVE_E: &str = "1";
+pub const CURVE_D: &str = "605f6b7c183fa81578bc39cfad518132b9df62897009af7e522c32d6dc7bffb";
+pub const CURVE_M: &str = "1000000000000000000000000000000003f63377f21ed98d70456bd55b0d8319c";
+pub const CURVE_Q: &str = "400000000000000000000000000000000fd8cddfc87b6635c115af556c360c67";
+pub const CURVE_X: &str = "91e38443a5e82c0d880923425712b2bb658b9196932e02c78b2582fe742daa28";
+pub const CURVE_Y: &str = "32879423ab1a0375895786c4bb46e9565fde0b5344766740af268adb32322e5c";
+pub const CURVE_U: &str = "d";
+pub const CURVE_V: &str = "60ca1e32aa475b348488c38fab07649ce7ef8dbe87f22e81f92b2592dba300e7";
+
+pub struct SigVec {
+    pub priv_: &'static str,
+    pub pub_: &'static str,
+    pub msg: &'static str,
+    pub digest: &'static str,
+    pub rand_k: &'static str,
+    pub sig: &'static str,
+    pub s512: &'static str,
+}
+
+pub const SIG_VECS: &[SigVec] = &[
+    SigVec {
+        priv_: "2a929adeb6f5a3c0e26c3d981d34e0f9463fec5a4d0c3b6f3e0d8f7a928937c1",
+        pub_: "9167b5bb3daff7cfa2b1b2965f263bc3d30943996c0c2ba395632043540102b2bb8a5be22679955f7ffb55ead7527bd69a27ae5e91944c81ea81956bbf8a3345",
+        msg: "",
+        digest: "3f539a213e97c802cc229d474c6aa32a825a360b2a933a949fd925208d9ce1bb",
+        rand_k: "1a929adeb6f5a3c0e26c3d981d34e0f9463fec5a4d0c3b6f3e0d8f7a928937c1",
+        sig: "195e2e637d42567b3bcfee62b926a1b8493d159cdb007b35521a57d099be111023b575c2b431c8078975aa5b241c83a12a8a8146325d06af991c12a362a7a38d",
+        s512: "8e945da209aa869f0455928529bcae4679e9873ab707b55315f56ceb98bef0a7362f715528356ee83cda5f2aac4c6ad2ba3a715c1bcd81cb8e9f90bf4c1c1a8a",
+    },
+    SigVec {
+        priv_: "0000000000000000000000000000000000000000000000000000000000000001",
+        pub_: "91e38443a5e82c0d880923425712b2bb658b9196932e02c78b2582fe742daa2832879423ab1a0375895786c4bb46e9565fde0b5344766740af268adb32322e5c",
+        msg: "54657374206d657373616765",
+        digest: "9acca1ceba8a7beffa71aec00b438cfd8b26ada43a9496043a4a842c89f45ba7",
+        rand_k: "0000000000000000000000000000000000000000000000000000000000000002",
+        sig: "28c6740e58d616ca220db7da0d9c3e1985b41d443281b5d3343355140e49f2171e5fb7abcdeb0eaa16f1155a242358144cc5732dbd41e2cee35bf0c205246b62",
+        s512: "55c66ae7bcbf59d54152afbb0e5ebe1126963b76a8f2f3778af95606ace20085a859e83c4882f1083fada408a757c2c6db013cfca4cc21a1e091878bd240614e",
+    },
+    SigVec {
+        priv_: "3fffffffffffffffffffffffffffffff0fd8cddfc87b6635c115af556c360c66",
+        pub_: "7a246bbbeb399257a302ee483c1477c3b860d2b2edb6df626113a7f80f8598a648fa25850dc32bccfd794e1104cf9e7e40619eee6a202be15d8d53240bf0a753",
+        msg: "0102030405",
+        digest: "8ff3235ad4c844641d1b98db730ac781aef82f4e300eb62729f0b44d2a1a8338",
+        rand_k: "3000000000000000000000000000000000000000000000000000000000000003",
+        sig: "1f4b9679aeb4c43713823d838a4e15aed1a0bf3a386186f7ab36b1122970f14f3867193d5d78eb7027923270dd164c9b9e78defd1adb99c0aa8aac7fba0b3676",
+        s512: "1aa4a2b5ba8a23a5662cc79a65190399b99e5213e8ade854f08ce6e1601103124ad4caf55a3920534a292b6f09742d3f07b9aa3360f4caa8a3d953fc9eb06a11",
+    },
+    SigVec {
+        priv_: "1902d60ce9a1e1be5f2e4c5e1b7f9a8c3d5e6f708192a3b4c5d6e7f8091a2b3c",
+        pub_: "d54f5e757ab5647faba1b4e18e9f2cae5faf60f128fea064fcef2e4afa2089b4b281a84998870f248037cf0d01b514707b34d79e154f379b839ae4c51e4b60d8",
+        msg: "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        digest: "1bce2366e4aecd63c75f972bfc6a514e03e2125920bea5b59cbd8ce0be56b8f3",
+        rand_k: "112233445566778899aabbccddeeff00112233445566778899aabbccddeeff00",
+        sig: "03ad202768944e9f4fe0257ae3c781cbe511a31086062b4f105c09a34da9dc162d4dc25bf54e0abc559ac9a2663dcc425e8fd16ca0b06961029d34deb962ad00",
+        s512: "2ae581f18ae85e3596c936acbef910f2ed70dcf91ed5d24b39a5af657bf8232a303d686056c8c00bf30d42e16ce255426fa8a155dcb3eb822d925808f7c7e345",
+    },
+];

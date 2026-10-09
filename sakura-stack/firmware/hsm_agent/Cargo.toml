@@ -1,0 +1,20 @@
+[package]
+name = "sakura-hsm"
+description = "SAKURA STACK: HSM-agent (BC-18): slice-based HsmBackend trait (no_std, no heap, BufferTooSmall) + SoftHsm-эмуляция КС3-контура для SIL"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = ["std"]
+# std: SoftHsm-симулятор (хост-платформа, SIL/HIL-контур)
+std = ["dep:sakura-hybrid", "dep:sakura-gost", "dep:sakura-pq", "dep:sakura-common"]
+
+[dependencies]
+sakura-hybrid = { workspace = true, optional = true }
+sakura-gost = { workspace = true, optional = true }
+sakura-pq = { workspace = true, optional = true }
+sakura-common = { workspace = true, optional = true }
+
+[lints]
+workspace = true

@@ -1,0 +1,13 @@
+[package]
+name = "sakura-crdt"
+description = "SAKURA STACK L6: CRDT-репликация (C-06, BC-34): vector clocks, LWW-регистры с детерминированным tie-break, G-счётчики, аудит merge"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+
+[lints]
+workspace = true

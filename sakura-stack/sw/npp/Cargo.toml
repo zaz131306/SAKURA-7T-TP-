@@ -1,0 +1,13 @@
+[package]
+name = "sakura-npp"
+description = "SAKURA STACK: NPP Frame Format (§13.3, BC-26): кадр v2.3, CRC8/CRC32, padding+FEC alignment, RS(544,514) GF(2^10), anti-replay (§13.17)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+
+[lints]
+workspace = true

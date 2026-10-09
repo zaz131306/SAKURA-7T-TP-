@@ -1,0 +1,17 @@
+[package]
+name = "sakura-boot"
+description = "SAKURA STACK L0 Trust Anchor: secure boot (C-02/C-08), measured boot PCR (22.16), rollback counters (BC-24), Boot FSM (13.16.1)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-pq = { workspace = true }
+sakura-hybrid = { workspace = true }
+sakura-hsm = { workspace = true }
+zeroize = { workspace = true }
+
+[lints]
+workspace = true

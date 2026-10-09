@@ -1,0 +1,14 @@
+[package]
+name = "sakura-audit"
+description = "SAKURA STACK L7: аудиторский журнал DM-1 §13.18 (canonical CBOR, hash chain, MAC, key epochs), AUD-001..012, checkpoints, signed export"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-hybrid = { workspace = true }
+
+[lints]
+workspace = true

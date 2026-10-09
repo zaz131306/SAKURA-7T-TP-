@@ -1,0 +1,16 @@
+[package]
+name = "sakura-attestation"
+description = "SAKURA STACK: attestation-агент (BC-19): отчёт §13.7, canonical CBOR + COSE_Sign1, variable-length подпись, verifier, FSM §13.16.3"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-hybrid = { workspace = true }
+sakura-hsm = { workspace = true }
+sakura-boot = { workspace = true }
+
+[lints]
+workspace = true

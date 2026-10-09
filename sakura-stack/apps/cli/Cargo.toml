@@ -1,0 +1,25 @@
+[package]
+name = "sakura-cli"
+description = "SAKURA STACK: operator CLI — сессия NPP, SubmitCommand (API-1), kv/attest/audit/emergency/update"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sakura-cli"
+path = "src/main.rs"
+
+[dependencies]
+sakura-common = { workspace = true }
+sakura-gost = { workspace = true }
+sakura-pq = { workspace = true }
+sakura-hybrid = { workspace = true }
+sakura-boot = { workspace = true }
+sakura-attestation = { workspace = true }
+sakura-npp = { workspace = true }
+sakura-policy = { workspace = true }
+sakura-update = { workspace = true }
+sakura-node = { path = "../node" }
+
+[lints]
+workspace = true
