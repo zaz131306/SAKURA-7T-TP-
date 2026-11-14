@@ -12,6 +12,7 @@ SAKURA STACK — рабочая реализация платформы
 ```bash
 # зависимости: Rust (pinned 1.83.0 — rust-toolchain.toml), gcc, python3,
 #              iverilog (для RTL-симуляции)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh  # установка Rust (rustup)
 cargo build --workspace --release      # сборка
 cargo test  --workspace                # все испытания (unit + integration)
 ./hw/run_sim.sh                        # RTL-тестбенчи (iverilog)
